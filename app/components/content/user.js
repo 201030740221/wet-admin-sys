@@ -157,7 +157,7 @@ const TuleImageBox = React.createClass({
 
     return (
       <div>
-        <img src={_item} height='640' />
+        <img src={_item} width='320' />
       </div>
     )
   }
@@ -547,7 +547,7 @@ var TagIndex = React.createClass({
                       item.tuleImage.map(function(_item,_key){
                         return (
                           <div className="fl u-mr-10" key={_key}>
-                            <Popover overlay={<TuleImageBox item={_item} />} title="图片" trigger="hover">
+                            <Popover overlay={<TuleImageBox item={_item} />} title="图片" trigger="hover" placement="rightBottom">
                               <img src={_item} height="80" />
                             </Popover>
                           </div>

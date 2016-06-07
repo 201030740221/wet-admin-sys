@@ -403,13 +403,14 @@ var TagIndex = React.createClass({
             <Col span="20">
               <div className="u-p-10">
                 <Row>
-                   <Col span="14">
+                   <Col span="8">
+                   .
                       <div className="clearfix">
                           {
                             record.tuleImage.map(function(item,key){
                               return (
                                 <div className="fl ml-5" key={key}>
-                                  <img src={item} />
+                                  <img src={item} width="100" />
                                 </div>
                               )
                             })
@@ -417,7 +418,7 @@ var TagIndex = React.createClass({
                       </div>
                    </Col>
 
-                    <Col span="10" style={{textAlign: 'right'}}>
+                    <Col span="14" style={{textAlign: 'right'}}>
                       <div className="">
                         已选:
                         <span className="ml-5">

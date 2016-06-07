@@ -375,16 +375,16 @@ var TagIndex = React.createClass({
   					<Col span="20">
   						<div className="u-p-10">
   							<Row>
-                      <div className="">
+                      <Col span="10" className="">
                         <p className="mt-10">用户：{record.uname}</p>
-  						<p className="mt-15">描述：{record.description}</p>
-                      </div>
+				                <p className="mt-15">描述：{record.description}</p>
+                      </Col>
 
-	  					<Col span="13" style={{textAlign: 'right'}}>
-	  						<div className="">
-	  							已选:
-	  							<span className="ml-5">
-                          {
+        	  					<Col span="13" style={{textAlign: 'right'}}>
+        	  						<div className="">
+        	  							已选:
+						              <span className="ml-5">
+                            {
                             record.existedTags.map(function(item,key){
 
                                 if(record.existedTags.length<=0){
