@@ -27,13 +27,14 @@ var FormSearch = React.createClass({
   render(){
 
     let allTag = this.props.allTag||[];
+  
     return (
        <div style={{marginBottom:'20'}}>
           <Row>
             <Col span="10">
               <div span="12" className='fl'>
                <Select
-                  defaultValue="-1"
+                  defaultValue={this.props.searchtype+''}
                   onChange={this.handleChange.bind(null,'search_type')}
                   style={{width:'120'}}
                   >
@@ -49,7 +50,7 @@ var FormSearch = React.createClass({
             </Col>
             <Col span="3" style={{marginLeft:'10'}}>
                <Select
-                  defaultValue="-1"
+                  defaultValue={this.props.isrec+''}
                   onChange={this.handleChange.bind(null,'search_channel')}
                   style={{width:'120'}}
                >
@@ -60,7 +61,7 @@ var FormSearch = React.createClass({
             </Col>
              <Col span="3" style={{marginLeft:'10'}}>
                <Select
-                  defaultValue="-1"
+                  defaultValue={this.props.tagid+''}
                   onChange={this.handleChange.bind(null,'tag_type')}
                   style={{width:'120'}}
                >
@@ -78,7 +79,7 @@ var FormSearch = React.createClass({
             <Col span="3" style={{marginLeft:'10'}}>
                <Select
                   className="search_channel"
-                  defaultValue="-1"
+                  defaultValue={this.props.istag+''}
                   onChange={this.handleChange.bind(null,'has_tag')}
                   style={{width:'120'}}
                >
@@ -445,13 +446,21 @@ var TagIndex = React.createClass({
 
     let allTag = this.state.allTag||[];
 
+    let props = {
+      onSearch: this.onSearch,
+      changeHandle: this.changeHandle,
+      allTag : allTag,
+      searchtype: this.state.searchtype,
+      isrec: this.state.isrec,
+      tagid: this.state.tagid,
+      istag: this.state.istag
+    }
+
 
     return (
       <div className="right-container">
       	<FormSearch
-          onSearch={this.onSearch}
-          changeHandle={this.changeHandle}
-          allTag = {allTag}
+          {...props}
         />
         <Table
           showHeader

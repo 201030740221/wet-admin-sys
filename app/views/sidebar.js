@@ -53,7 +53,17 @@ let SideBar = React.createClass({
                 path: '/content/limit'
               }
             ]
-          }
+          },
+          {
+            title: '权限管理',
+            icon: 'lock',
+            items: [
+              {
+                name: '账号列表',
+                path: '/permission/index'
+              }
+            ]
+          },
         ]
       }
     ];
@@ -63,10 +73,10 @@ let SideBar = React.createClass({
           return (
             <div key={'menu-' + index}>
               <h4 className="aside-title">{menu.title}</h4>
-              <Menu mode="inline" 
-                    onClick={this.handleMenu} 
+              <Menu mode="inline"
+                    onClick={this.handleMenu}
                     selectedKeys={[this.state.current]}
-                    defaultOpenKeys={['sub-menu-0','sub-menu-1']}
+                    defaultOpenKeys={['sub-menu-0']}
                     >
                 {menu.subMenus.map(function (subMenu, subIndex) {
                   return (

@@ -27,6 +27,11 @@ import LoginPage from './components/user/login';
 //发布管理
 import PublishIndex from './components/publish/index';
 
+//权限管理
+import PermissionIndex from './components/permission/index';
+import PermissionEdit from './components/permission/edit';
+
+
 // 登录验证
 function requireAuth() {
   if (!localStorage.getItem('adminId')) {
@@ -64,10 +69,17 @@ var routes = (
 	          <Route onEnter={requireAuth} component={ContentLimit} path="limit" breadcrumbName="内容举报管理"/>
 	        </Route>
 
-	         {/* 发布管理 */}
+	        {/* 发布管理 */}
 	        <Route onEnter={requireAuth} path="publish" breadcrumbName="发布管理">
 	          <IndexRoute component={PublishIndex}/>
 	          <Route onEnter={requireAuth} component={PublishIndex} path="index" breadcrumbName="内容发布"/>
+	        </Route>
+
+          {/* 权限管理 */}
+	        <Route onEnter={requireAuth} path="permission" breadcrumbName="权限管理">
+	          <IndexRoute component={PermissionIndex}/>
+	          <Route onEnter={requireAuth} component={PermissionIndex} path="index" breadcrumbName="账号列表"/>
+            <Route onEnter={requireAuth} component={PermissionEdit} path="edit" breadcrumbName="权限列表"/>
 	        </Route>
 
 

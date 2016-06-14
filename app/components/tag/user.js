@@ -28,13 +28,16 @@ var FormSearch = React.createClass({
   render(){
 
     let allTag = this.props.allTag||[];
+
+    console.log(this.props,'props');
+
     return (
        <div style={{marginBottom:'20'}}>
           <Row>
             <Col span="10">
               <div span="12" className='fl'>
                <Select
-                  defaultValue="-1"
+                  defaultValue={this.props.searchtype+''}
                   onChange={this.handleChange.bind(null,'search_type')}
                   style={{width:'120'}}
                   >
@@ -49,7 +52,7 @@ var FormSearch = React.createClass({
             </Col>
             <Col span="3" style={{marginLeft:'10'}}>
                <Select
-                  defaultValue="-1"
+                  defaultValue={this.props.isrec+''}
                   onChange={this.handleChange.bind(null,'search_channel')}
                   style={{width:'120'}}
                >
@@ -60,7 +63,7 @@ var FormSearch = React.createClass({
             </Col>
              <Col span="3" style={{marginLeft:'10'}}>
                <Select
-                  defaultValue="-1"
+                  defaultValue={this.props.tagid+''}
                   onChange={this.handleChange.bind(null,'tag_type')}
                   style={{width:'120'}}
                >
@@ -77,7 +80,7 @@ var FormSearch = React.createClass({
             </Col>
             <Col span="3" style={{marginLeft:'10'}}>
                <Select
-                  defaultValue="-1"
+                  defaultValue={this.props.istag+''}
                   onChange={this.handleChange.bind(null,'has_tag')}
                   style={{width:'120'}}
                >
@@ -90,7 +93,7 @@ var FormSearch = React.createClass({
           <Row>
              <Col span="3" style={{marginTop:'10'}}>
                <Select
-                  defaultValue="-1"
+                  defaultValue={this.props.sorttype+''}
                   onChange={this.handleChange.bind(null,'sorttype')}
                   style={{width:'120'}}
                >
@@ -403,7 +406,7 @@ var TagIndex = React.createClass({
             <Col span="20">
               <div className="u-p-10">
                 <Row>
-                   <Col span="8">
+                   <Col span="12">
                    .
                       <div className="clearfix">
                           {
@@ -418,7 +421,7 @@ var TagIndex = React.createClass({
                       </div>
                    </Col>
 
-                    <Col span="14" style={{textAlign: 'right'}}>
+                    <Col span="12" style={{textAlign: 'right'}}>
                       <div className="">
                         已选:
                         <span className="ml-5">
@@ -478,13 +481,21 @@ var TagIndex = React.createClass({
 
     let allTag = this.state.allTag||[];
 
+    let props = {
+      onSearch: this.onSearch,
+      changeHandle: this.changeHandle,
+      allTag: allTag,
+      searchtype: this.state.searchtype,
+      isrec: this.state.isrec,
+      tagid: this.state.tagid,
+      istag: this.state.istag,
+      sorttype: this.state.sorttype
+    }
 
     return (
       <div className="right-container">
         <FormSearch
-          onSearch={this.onSearch}
-          changeHandle={this.changeHandle}
-          allTag = {allTag}
+          {...props}
         />
         <Table
           showHeader

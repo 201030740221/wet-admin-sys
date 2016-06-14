@@ -7,9 +7,7 @@ const FormItem = Form.Item;
 var FormSearch = React.createClass({
   getInitialState: function () {
         return {
-         type: 0,
-         content: 0,
-         channel: 0
+
         };
   },
   search(){
@@ -19,23 +17,6 @@ var FormSearch = React.createClass({
   },
   handleChange(which,val){
     let self = this;
-    switch(which){
-      case 'search_type':
-          this.setState({
-            type: val
-          })
-          break;
-      case 'search_content':
-          this.setState({
-            content: val
-          })
-          break;
-      case 'search_channel':
-          this.setState({
-            channel: val
-          })
-          break;
-    }
 
     if(this.props.changeHandle){
       this.props.changeHandle(which,val);
@@ -49,7 +30,7 @@ var FormSearch = React.createClass({
               <div span="12" className='fl'>
                <Select
                   className="search_type"
-                  defaultValue="-1"
+                  defaultValue={this.props.type+''}
                   onChange={this.handleChange.bind(null,'search_type')}
                   style={{width:'120'}}
                   >
@@ -68,7 +49,7 @@ var FormSearch = React.createClass({
             <Col span="3" style={{marginLeft:'10'}}>
                <Select
                   className="search_content"
-                  defaultValue="-1"
+                  defaultValue={this.props.content+''}
                   onChange={this.handleChange.bind(null,'search_content')}
                   style={{width:'120'}}
                   >
@@ -82,7 +63,7 @@ var FormSearch = React.createClass({
              <Col span="3" style={{marginLeft:'10'}}>
                <Select
                   className="search_channel"
-                  defaultValue="-1"
+                  defaultValue={this.props.channel+''}
                   onChange={this.handleChange.bind(null,'search_channel')}
                   style={{width:'120'}}
                   >
@@ -113,9 +94,11 @@ var TagIndex = React.createClass({
           first_id: null,
           last_id: null,
           current_page: 1,
+
           type: -1,
           content: -1,
           channel:-1,
+
 		      loading: true,
           record: {},
           visible: false,
@@ -527,11 +510,17 @@ var TagIndex = React.createClass({
       )
     }
 
+    let props = {
+      onSearch: this.onSearch,
+      changeHandle: this.changeHandle,
+      type: this.state.type,
+      content: this.state.content,
+      channel: this.state.channel
+    }
     return (
       <div className="right-container">
         <FormSearch
-          onSearch={this.onSearch}
-          changeHandle={this.changeHandle}
+          {...props}
         />
 
         <div className="content_section">
@@ -587,9 +576,9 @@ var TagIndex = React.createClass({
         </div>
 
         <div className="u-mt-20 text_center">
-          <span className="" onClick={this.pageNav.bind(null,'prev')} >&lt; 上一页</span>
+          <span className="nav_span" onClick={this.pageNav.bind(null,'prev')} >&lt; 上一页</span>
           <span className="u-ml-20">{this.state.current_page}</span>
-          <span className="u-ml-20" onClick={this.pageNav.bind(null,'next')}>下一页 &gt;</span>
+          <span className="nav_span u-ml-20" onClick={this.pageNav.bind(null,'next')}>下一页 &gt;</span>
         </div>
 
           <Modal title="视频/影片"

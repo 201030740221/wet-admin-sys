@@ -32,7 +32,7 @@ var FormSearch = React.createClass({
             <Col span="10">
               <div span="12" className='fl'>
                <Select className="search_type"
-                  defaultValue="-1"
+                  defaultValue={this.props.searchtype+''}
                   onChange={this.handleChange.bind(null,'search_type')}
                   style={{width:'120'}}
                   >
@@ -48,7 +48,7 @@ var FormSearch = React.createClass({
             <Col span="4" style={{marginLeft:'10'}}>
                <Select
                   className="search_content"
-                  defaultValue="2"
+                  defaultValue={this.props.usertype+''}
                   onChange={this.handleChange.bind(null,'search_channel')}
                   style={{width:'120'}}
                >
@@ -60,7 +60,7 @@ var FormSearch = React.createClass({
             <Col span="4">
                <Select
                   className="search_channel"
-                  defaultValue="-1"
+                  defaultValue={this.props.sorttype+''}
                   onChange={this.handleChange.bind(null,'sorttype')}
                   style={{width:'120'}}
                >
@@ -76,7 +76,7 @@ var FormSearch = React.createClass({
             <Col span="4" style={{marginLeft:'10'}}>
                <Select
                   className="search_channel"
-                  defaultValue="-1"
+                  defaultValue={this.props.activeday+''}
                   onChange={this.handleChange.bind(null,'has_tag')}
                   style={{width:'120'}}
                >
@@ -462,11 +462,19 @@ var TagIndex = React.createClass({
       )
     }
 
+    let props = {
+      onSearch: this.onSearch,
+      changeHandle: this.changeHandle,
+      searchtype: this.state.searchtype,
+      usertype: this.state.usertype,
+      activeday:this.state.activeday,
+      sorttype: this.state.sorttype
+    }
+
     return (
       <div className="right-container">
         <FormSearch
-          onSearch={this.onSearch}
-          changeHandle={this.changeHandle}
+          {...props}
         />
 
         <Row className="content_section">
